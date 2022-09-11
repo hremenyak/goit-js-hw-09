@@ -37,23 +37,27 @@ const options = {
 
         timerId = setInterval(() => {
           const deltaTime = selectedDates[0] - new Date();
+          if (deltaTime <= 0) {
+            stopTimer();
+            return;
+          }
+
           const countdown = convertMs(deltaTime);
           const paddedTimeData = addLeadingZero(countdown);
 
           updateTime(paddedTimeData);
         }, 1000);
-
-        // if (!deltaTime) {
-        //   clearInterval(timerId);
-        //   refs.startBtn.disabled = false;
-        //   return;
-        // }
       }
     }
   },
 };
 
 const timePicker = flatpickr(refs.datePicker, options);
+
+function stopTimer() {
+  clearInterval(timerId);
+  refs.startBtn.disabled = false;
+}
 
 function addLeadingZero({ days, hours, minutes, seconds }) {
   return {
