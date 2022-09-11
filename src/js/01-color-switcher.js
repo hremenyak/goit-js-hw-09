@@ -6,7 +6,7 @@ const refs = {
 refs.startBtn.addEventListener('click', onStartBtnClick);
 refs.stopBtn.addEventListener('click', onStopBtnClick);
 
-let intervalId = 0;
+let intervalId = null;
 
 function onStartBtnClick() {
   refs.startBtn.setAttribute('disabled', '');
